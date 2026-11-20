@@ -58,7 +58,7 @@ juce::AudioProcessorValueTreeState::ParameterLayout MultibandProcessor::createLa
     layout.add (std::make_unique<AudioParameterFloat> (ParameterID { ids::limThresh, 1 }, "Limiter Ceiling", range (-60.0f, 1.0f, 0.01f, -6.0f), -0.01f, db));
     layout.add (std::make_unique<AudioParameterFloat> (ParameterID { ids::limRelease, 1 }, "Limiter Release", range (10.0f, 500.0f, 0.01f, 100.0f), 150.0f, ms));
     layout.add (std::make_unique<AudioParameterBool> (ParameterID { ids::gainMatch, 1 }, "Gain Match", false));
-    layout.add (std::make_unique<AudioParameterBool> (ParameterID { ids::precision, 1 }, "Precision", true));
+    layout.add (std::make_unique<AudioParameterBool> (ParameterID { ids::precision, 1 }, "Precision", false));
     layout.add (std::make_unique<AudioParameterBool> (ParameterID { ids::longLook, 1 }, "Lookahead 10 ms", false));
     layout.add (std::make_unique<AudioParameterBool> (ParameterID { ids::lite, 1 }, "Precision Lite", false));
     layout.add (std::make_unique<AudioParameterBool> (ParameterID { ids::bypass, 1 }, "Bypass", false));

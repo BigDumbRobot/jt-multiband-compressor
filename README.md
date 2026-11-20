@@ -12,9 +12,14 @@ It installs the VST3 and Audio Unit for all users (Apple silicon and Intel, macO
 `/Library/Audio/Plug-Ins/VST3` and `/Library/Audio/Plug-Ins/Components`, and asks for your
 administrator password.
 
-The installer isn't signed with an Apple Developer ID yet, so macOS warns the first time you open it.
-Right-click the .pkg and choose **Open**, or go to **System Settings > Privacy & Security** and click
-**Open Anyway**.
+The installer isn't signed with an Apple Developer ID yet, so macOS blocks it the first time:
+
+- **macOS 15 or later:** double-click the .pkg, click **Done** on the warning, then open
+  **System Settings > Privacy & Security**, scroll down to the message about the installer and click
+  **Open Anyway** (and confirm with your password).
+- **macOS 11–14:** right-click (Control-click) the .pkg, choose **Open**, then **Open** again.
+- Or in Terminal: `xattr -d com.apple.quarantine ~/Downloads/JT-Multiband-Compressor-*.pkg`, then
+  double-click it.
 
 To uninstall, delete `JT Multiband Compressor.vst3` and `JT Multiband Compressor.component` from those
 two folders.
@@ -42,9 +47,13 @@ The signal path, per block:
 
 | Mode | What runs | CPU (one instance, stereo 48 kHz, Apple silicon) |
 |---|---|---|
-| Classic | The chain at the session rate | ~1% |
+| Classic (default) | The chain at the session rate | ~1% |
 | Precision | The whole chain at 32x oversampling, between a 2x + 16x Kaiser-windowed polyphase converter, in double precision | ~18–23% |
 | Precision Lite | The same 32x chain with lighter arithmetic: an FFT first converter stage, single-precision converters, fused multiply-adds and SIMD in the chain. It nulls against Precision at -80 to -126 dB | ~8–12% |
+
+New instances start in Classic. Precision's cost scales with the session's sample rate: at 96 kHz
+it's about twice the figures above, and at 192 kHz one Precision instance needs a whole CPU core, so
+use Lite or Classic there.
 
 The chain always runs on fixed 512-sample blocks through a FIFO, so the sound and the latency don't
 depend on the DAW's buffer size.
@@ -56,7 +65,7 @@ real-time analyser of the input and output (click the label to cycle IN / OUT / 
 
 ### Presets
 
-- **Default**: everything neutral.
+- **Default**: everything neutral, Classic engine.
 - **Tad**: gentle glue: all bands -20 dB at 1.2:1, +2.19 dB makeup, soft clip, Gain Match, Precision.
 
 ## Building
