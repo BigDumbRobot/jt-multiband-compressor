@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<installer-gui-script minSpecVersion="2">
+    <title>JT Multiband Compressor @VERSION@</title>
+    <organization>com.bigdumbrobot</organization>
+    <welcome file="welcome.html" mime-type="text/html"/>
+    <license file="license.txt" mime-type="text/plain"/>
+    <options customize="allow" require-scripts="false" hostArchitectures="arm64,x86_64"/>
+    <domains enable_anywhere="false" enable_currentUserHome="false" enable_localSystem="true"/>
+    <os-version min="11.0"/>
+    <choices-outline>
+        <line choice="vst3"/>
+        <line choice="au"/>
+    </choices-outline>
+    <choice id="vst3" title="VST3" description="Installs JT Multiband Compressor.vst3 to /Library/Audio/Plug-Ins/VST3.">
+        <pkg-ref id="com.bigdumbrobot.jtmultibandcompressor.vst3"/>
+    </choice>
+    <choice id="au" title="Audio Unit" description="Installs JT Multiband Compressor.component to /Library/Audio/Plug-Ins/Components (Logic, GarageBand, ...).">
+        <pkg-ref id="com.bigdumbrobot.jtmultibandcompressor.au"/>
+    </choice>
+    <pkg-ref id="com.bigdumbrobot.jtmultibandcompressor.vst3" version="@VERSION@">vst3.pkg</pkg-ref>
+    <pkg-ref id="com.bigdumbrobot.jtmultibandcompressor.au" version="@VERSION@">au.pkg</pkg-ref>
+</installer-gui-script>

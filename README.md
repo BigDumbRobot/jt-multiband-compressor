@@ -4,6 +4,21 @@ A free three-band multiband compressor by **Big Dumb Robot**. VST3, AU and AAX (
 
 ![JT Multiband Compressor](docs/screenshot.png)
 
+## Install
+
+Download **JT-Multiband-Compressor-<version>.pkg** from the
+[latest release](https://github.com/BigDumbRobot/jt-multiband-compressor/releases/latest) and open it.
+It installs the VST3 and Audio Unit for all users (Apple silicon and Intel, macOS 11+) into
+`/Library/Audio/Plug-Ins/VST3` and `/Library/Audio/Plug-Ins/Components`, and asks for your
+administrator password.
+
+The installer isn't signed with an Apple Developer ID yet, so macOS warns the first time you open it.
+Right-click the .pkg and choose **Open**, or go to **System Settings > Privacy & Security** and click
+**Open Anyway**.
+
+To uninstall, delete `JT Multiband Compressor.vst3` and `JT Multiband Compressor.component` from those
+two folders.
+
 ## What it does
 
 The signal path, per block:
@@ -56,6 +71,11 @@ cmake --build build --target JTMultibandCompressor_VST3 JTMultibandCompressor_AU
 To use a local JUCE checkout instead of downloading one, add `-DFETCHCONTENT_SOURCE_DIR_JUCE=/path/to/JUCE`.
 
 AAX builds unsigned; it loads in Pro Tools Developer, and needs signing for regular Pro Tools.
+
+### Installer
+
+`packaging/build_pkg.sh` builds the universal installer into `dist/`. With an Apple Developer account it
+also signs and notarizes: set `DEV_ID_APP`, `DEV_ID_INSTALLER` and `NOTARY_PROFILE` (see the script).
 
 ### Tools
 

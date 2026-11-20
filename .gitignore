@@ -3,3 +3,5 @@ build/
 *.swp
 .vscode/
 .idea/
+build-release/
+dist/
