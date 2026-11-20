@@ -1,0 +1,11 @@
+JT Multiband Compressor
+Copyright 2026 Big Dumb Robot
+
+Licensed under the Apache License, Version 2.0 (see LICENSE).
+
+This software is built with JUCE (https://juce.com), which is licensed separately: under the
+GNU AGPLv3 or a commercial JUCE licence. Binaries built from this source include JUCE and are
+subject to its licence.
+
+The title font, Russo One, is licensed under the SIL Open Font License 1.1
+(assets/fonts/RussoOne-OFL.txt).
